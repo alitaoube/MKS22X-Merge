@@ -5,7 +5,7 @@ public class Merge{
   public static void main(String[] args) {
     int[] data1 = {1, 3, 5};
     int[] data2 = {2, 4, 6};
-    int[] output = {1, 10, 5, 2, 8};
+    int[] output = {111, 1, 999, 243434, 15, 99};
 
     mergesort(output);
 
@@ -14,9 +14,14 @@ public class Merge{
   public static void mergesort(int[]data){
     mergeH(data, 0, data.length - 1);
   }
+
   private static void mergeH(int[] data, int lo, int hi){
     if (lo == hi){
       return;
+    }
+
+    if (data.length <= 2500){
+      insertionSort(data);
     }
 
     int[] left = Arrays.copyOfRange(data, 0, data.length / 2);
@@ -52,6 +57,20 @@ public class Merge{
       }
     }
     }
+
+    public static void insertionSort(int[] ary){
+      for (int x = 1; x < ary.length; x++){
+        if (ary[x] < ary[x-1]){ // Check if its in the right place
+          int temp = ary[x];
+          int y = x;
+          while (y > 0 && temp < ary[x-1]){ // Find the right place
+            ary[y] = ary[y-1];
+            y--;
+          }
+          ary[y] = temp;
+        }
+        }
+      }
 
   public static String toString(int[] data){
     String output = "";
