@@ -12,17 +12,23 @@ public class Merge{
   public static void mergesort(int[]data){
 
   }
-  private static void mergeH(int[] data, int lo, int hi, int[] output){
+  private static void mergeH(int[] data, int lo, int hi){
     if (lo == hi){
       return;
     }
-    mergeH(Arrays.copyOfRange(data, 0, data.length / 2), 0, data.length / 2, output);
-    mergeH(Arrays.copyOfRange(data, data.length / 2, hi), data.length / 2, hi, output);
+
+    int[] left = Arrays.copyOfRange(data, 0, data.length / 2);
+    int[] right = Arrays.copyOfRange(data, data.length / 2, hi);
+
+    mergeH(left, 0, data.length / 2);
+    mergeH(right, data.length / 2, hi);
+    merge(left, right);
   }
 
-  private static int[] merge(int[] left, int[] right, int[] data){
+  private static int[] merge(int[] left, int[] right){
     int x = 0;
     int y = 0;
+    int[] data = new int[left.length + right.length];
 
     for (int track = 0; track < data.length; track++){
       if (x < left.length && y < right.length){
