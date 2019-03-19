@@ -20,7 +20,7 @@ public class Merge{
       return;
     }
 
-    if (data.length <= 2500){
+    if (data.length <= 3500){
       insertionSort(data);
     }
 
