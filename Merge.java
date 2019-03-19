@@ -5,12 +5,14 @@ public class Merge{
   public static void main(String[] args) {
     int[] data1 = {1, 3, 5};
     int[] data2 = {2, 4, 6};
-    int[] output = new int[6];
+    int[] output = {1, 10, 5, 2, 8};
 
-    System.out.print(toString(merge(data1, data2, output)));
+    mergesort(output);
+
+    System.out.print(toString(output));
   }
   public static void mergesort(int[]data){
-
+    mergeH(data, 0, data.length - 1);
   }
   private static void mergeH(int[] data, int lo, int hi){
     if (lo == hi){
@@ -18,17 +20,16 @@ public class Merge{
     }
 
     int[] left = Arrays.copyOfRange(data, 0, data.length / 2);
-    int[] right = Arrays.copyOfRange(data, data.length / 2, hi);
+    int[] right = Arrays.copyOfRange(data, data.length / 2, hi + 1);
 
-    mergeH(left, 0, data.length / 2);
-    mergeH(right, data.length / 2, hi);
-    merge(left, right);
+    mergeH(left, 0, left.length - 1);
+    mergeH(right, 0, right.length - 1);
+    merge(data, left, right);
   }
 
-  private static int[] merge(int[] left, int[] right){
+  private static void merge(int[] data, int[] left, int[] right){
     int x = 0;
     int y = 0;
-    int[] data = new int[left.length + right.length];
 
     for (int track = 0; track < data.length; track++){
       if (x < left.length && y < right.length){
@@ -50,7 +51,6 @@ public class Merge{
         y++;
       }
     }
-    return data;
     }
 
   public static String toString(int[] data){
