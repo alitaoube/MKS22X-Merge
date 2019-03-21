@@ -2,15 +2,6 @@ import java.util.Arrays;
 
 public class Merge{
   /*sort the array from least to greatest value. This is a wrapper function*/
-  public static void main(String[] args) {
-    int[] data1 = {1, 3, 5};
-    int[] data2 = {2, 4, 6};
-    int[] output = {111, 1, 999, 243434, 15, 99};
-
-    mergesort(output);
-
-    System.out.print(toString(output));
-  }
   public static void mergesort(int[]data){
     mergeH(data, 0, data.length - 1);
   }
@@ -20,12 +11,16 @@ public class Merge{
       return;
     }
 
-    if (data.length <= 3500){
-      insertionSort(data);
-    }
-
     int[] left = Arrays.copyOfRange(data, 0, data.length / 2);
     int[] right = Arrays.copyOfRange(data, data.length / 2, hi + 1);
+
+    if (left.length <= 43){
+      insertionSort(left);
+    }
+
+    if (right.length <= 43){
+      insertionSort(right);
+    }
 
     mergeH(left, 0, left.length - 1);
     mergeH(right, 0, right.length - 1);
