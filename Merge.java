@@ -11,9 +11,12 @@ public class Merge{
       return;
     }
 
+    // split array in two pieces - right and left
     int[] left = Arrays.copyOfRange(data, 0, data.length / 2);
     int[] right = Arrays.copyOfRange(data, data.length / 2, hi + 1);
 
+
+    // insertionsort is faster for array length of 43 or smaller
     if (left.length <= 43){
       insertionSort(left);
     }
@@ -31,6 +34,7 @@ public class Merge{
     int x = 0;
     int y = 0;
 
+    // given two presorted arrays, sort them with relation with each other by looping through both
     for (int track = 0; track < data.length; track++){
       if (x < left.length && y < right.length){
         if (left[x] < right[y]){
@@ -53,6 +57,7 @@ public class Merge{
     }
     }
 
+    // O(n^2) sort but faster on small arrays
     public static void insertionSort(int[] ary){
       for (int x = 1; x < ary.length; x++){
         if (ary[x] < ary[x-1]){ // Check if its in the right place
