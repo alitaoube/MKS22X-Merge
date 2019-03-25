@@ -17,13 +17,9 @@ public class Merge{
 
 
     // insertionsort is faster for array length of 43 or smaller
-    if (left.length <= 43){
-      insertionSort(left);
-    }
+    if (left.length <= 43) insertionSort(left, 0, left.length - 1);
 
-    if (right.length <= 43){
-      insertionSort(right);
-    }
+    if (right.length <= 43) insertionSort(right, 0, right.length - 1);
 
     mergeH(left, 0, left.length - 1);
     mergeH(right, 0, right.length - 1);
@@ -58,8 +54,8 @@ public class Merge{
     }
 
     // O(n^2) sort but faster on small arrays
-    public static void insertionSort(int[] ary){
-      for (int x = 1; x < ary.length; x++){
+    public static void insertionSort(int[] ary, int lo, int hi){
+      for (int x = lo + 1; x < hi + 1; x++){
         if (ary[x] < ary[x-1]){ // Check if its in the right place
           int temp = ary[x];
           int y = x;
